@@ -1,0 +1,23 @@
+{
+  "name": "cse-341",
+  "version": "1.0.0",
+  "description": "My Project CSE-341",
+  "homepage": "https://github.com/Billionaire-Developer/cse-341#readme",
+  "bugs": {
+    "url": "https://github.com/Billionaire-Developer/cse-341/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Billionaire-Developer/cse-341.git"
+  },
+  "license": "ISC",
+  "author": "Billionaire_Developer",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
