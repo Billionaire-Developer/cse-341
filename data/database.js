@@ -1,35 +1,31 @@
 const dotenv = require('dotenv');
 dotenv.config();
 
-const { MongoClient } = require('mongodb');
+const  MongoClient  = require('mongodb').MongoClient;
 
 let database;
 
-const initDb = async (callback) => {
+const initDb =  (callback) => {
   if (database) {
     console.log("Database is already initialized");
     return callback(null, database);
   }
 
-  try {
-    const client = new MongoClient(process.env.MONGODB_URL, {
-      tls: true,
-      tlsAllowInvalidCertificates: true, // important for Node 22
-      serverSelectionTimeoutMS: 10000,
-    });
-
-    await client.connect();
-    database = client.db();
-    console.log("✅ Connected to MongoDB Atlas successfully!");
+  MongoClient.connect(process.env.MONGODB_URL, {
+     tlsAllowInvalidCertificates: true, // Fix TLS handshake for Windows + Node 22
+  })
+  .then((client) =>{
+    database = client;
     callback(null, database);
-  } catch (err) {
-    console.error("❌ MongoDB connection failed:", err);
+  })
+  .catch((err) =>{
     callback(err);
-  }
-};
-
+  });
+}
 const getDatabase = () => {
-  if (!database) throw Error("Database not initialized");
+  if (!database) {
+    throw Error("Database not initialized");
+  }
   return database;
 };
 
