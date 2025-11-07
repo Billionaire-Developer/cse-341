@@ -18,4 +18,22 @@ const getSingle = async(req, res) => {
     });
 };
 
-module.exports = {getAll, getSingle};
+const createUser = async(req, res) => {
+    const userId = new ObjectId(req.params.id);
+    const user = {
+        firstName : req.body.firstName,
+        lastName : req.body.lastName,
+        email : req.body.email,
+        favoriteColor : req.body.favoriteColor,
+        birthday : req.body.birthday
+    };
+    const response = await mongodb.getDatabase().db().collection('users').replaceOne({ _id: userId}, user);
+};
+
+module.exports = {
+    getAll, 
+    getSingle,
+    createUser,
+    updateUser,
+    deleteUser
+};
