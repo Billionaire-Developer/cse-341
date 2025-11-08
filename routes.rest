@@ -1,0 +1,31 @@
+#Localhost
+### GET all contacts
+GET http://localhost:3000/users
+
+### GET contacts by Id
+GET http://localhost:3000/users/6904d0a4419382cb28ee4f67
+
+### Create contacts
+POST http://localhost:3000/users HTTP/1.1
+content-type: application/json
+{
+    "firstName": "Covenant",
+    "lastName": "Lawani",
+    "email": "lawanijeremiah23@gmail.com",
+    "favoriteColor": "Black",
+    "birthday": "29/11/1990"
+}
+
+### PUT contacts
+PUT http://localhost:3000/users/66904d0a4419382cb28ee4f67 HTTP/1.1
+content-type: application/json
+
+{
+    "email": "paullawani@gmail.com",
+    "username": "James-Brown",
+    "name": "Clarkson",
+    "ipaddress": "193:23:42:3"
+}
+
+###Delete contact
+DELETE http://localhost:3000/users/6904d0a4419382cb28ee4f67
