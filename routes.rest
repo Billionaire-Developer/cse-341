@@ -8,16 +8,17 @@ GET http://localhost:3000/users/6904d0a4419382cb28ee4f67
 ### Create contacts
 POST http://localhost:3000/users HTTP/1.1
 content-type: application/json
+
 {
-    "firstName": "Covenant",
-    "lastName": "Lawani",
+    "firstName": "Abel",
+    "lastName": "Amos",
     "email": "lawanijeremiah23@gmail.com",
-    "favoriteColor": "Black",
-    "birthday": "29/11/1990"
+    "favoriteColor": "Blue",
+    "birthday": "12/12/1990"
 }
 
 ### PUT contacts
-PUT http://localhost:3000/users/66904d0a4419382cb28ee4f67 HTTP/1.1
+PUT http://localhost:3000/users/6904d0a4419382cb28ee4f67 HTTP/1.1
 content-type: application/json
 
 {
@@ -28,4 +29,4 @@ content-type: application/json
 }
 
 ###Delete contact
-DELETE http://localhost:3000/users/6904d0a4419382cb28ee4f67
+DELETE http://localhost:3000/users/6904cf28419382cb28ee4f66

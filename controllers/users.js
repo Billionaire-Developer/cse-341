@@ -2,6 +2,7 @@ const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
 
 const getAll = async(req, res) => {
+    //#swagger.tags=['Users']
     const result = await mongodb.getDatabase().db().collection('users').find();
     result.toArray().then((users) => {
         res.setHeader('content-Type', 'application/json');
@@ -10,6 +11,7 @@ const getAll = async(req, res) => {
 };
 
 const getSingle = async(req, res) => {
+    //#swagger.tags=['Users']
     const userId = new ObjectId(req.params.id);
     const result = await mongodb.getDatabase().db().collection('users').find({_id: userId});
     result.toArray().then((users) => {
@@ -19,6 +21,7 @@ const getSingle = async(req, res) => {
 };
 
 const createUser = async(req, res) => {
+    //#swagger.tags=['Users']
     const user = {
         firstName : req.body.firstName,
         lastName : req.body.lastName,
@@ -30,11 +33,12 @@ const createUser = async(req, res) => {
     if(response.acknowledged){
         res.status(204).send();
     }else{
-        res.status(500).json(response.error || `some error occurred while updating the user.`);
+        res.status(500).json(response.error || `some error occurred while creating the user.`);
     }
 };
 
 const updateUser = async(req, res) =>{
+    //#swagger.tags=['Users']
     const userID = new ObjectId(req.params.id);
     const user = {
         username: req.body.username,
@@ -51,12 +55,13 @@ const updateUser = async(req, res) =>{
 }
 
 const deleteUser = async(req, res) => {
+    //#swagger.tags=['Users']
     const userID = new ObjectId(req.params.id);
     const response = await mongodb.getDatabase().db().collection('users').deleteOne({_id: userID});
-    if(response.deleteCount > 0) {
-        res.send(204).send()
+    if(response.deletedCount > 0) {
+        res.status(204).send()
     }else{
-        res.send(500).json(response.error || `some error occurred while updating the user.`)
+        res.status(500).json(response.error || `some error occurred while deleting the user.`)
     }
 }
 
